@@ -3,7 +3,7 @@ import { Bot, Shield, Zap, Users, Star, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   const handleInviteBot = () => {
-    const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427&integration_type=1&scope=applications.commands';
+    const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427';
     window.open(botInviteUrl, '_blank', 'noopener,noreferrer');
   };
 
