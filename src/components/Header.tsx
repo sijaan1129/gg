@@ -5,13 +5,23 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleDiscordLogin = () => {
-    // Using the actual bot client ID from the project
+    // For a proper Discord OAuth login, you need to:
+    // 1. Register your redirect URI in Discord Developer Portal
+    // 2. Use a valid redirect URI that matches your application settings
+    
+    // For now, let's redirect to Discord's main page or your support server
+    // You'll need to set up proper OAuth in Discord Developer Portal first
+    const supportServerUrl = 'https://discord.gg/QZqmjsbgUJ';
+    window.open(supportServerUrl, '_blank', 'noopener,noreferrer');
+    
+    // Alternative: If you want to implement proper OAuth later, use this structure:
+    /*
     const clientId = '1311163553763426427';
-    const redirectUri = encodeURIComponent(window.location.origin + '/auth/callback');
+    const redirectUri = encodeURIComponent('https://your-domain.com/auth/callback');
     const scope = 'identify email guilds';
     const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
-    
     window.open(discordAuthUrl, '_blank', 'noopener,noreferrer');
+    */
   };
 
   const handleInviteBot = () => {
@@ -59,9 +69,10 @@ const Header = () => {
             <button 
               onClick={handleDiscordLogin}
               className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all duration-200 flex items-center gap-2 hover:scale-105"
+              title="Join our Discord community"
             >
               <LogIn className="h-4 w-4" />
-              Login
+              Join Discord
             </button>
             <button 
               onClick={handleInviteBot}
@@ -96,7 +107,7 @@ const Header = () => {
                   className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 justify-center"
                 >
                   <LogIn className="h-4 w-4" />
-                  Login
+                  Join Discord
                 </button>
                 <button 
                   onClick={handleInviteBot}
