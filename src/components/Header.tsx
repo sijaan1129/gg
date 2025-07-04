@@ -5,17 +5,18 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleDiscordLogin = () => {
-    const clientId = 'YOUR_DISCORD_CLIENT_ID';
+    // Using the actual bot client ID from the project
+    const clientId = '1311163553763426427';
     const redirectUri = encodeURIComponent(window.location.origin + '/auth/callback');
     const scope = 'identify email guilds';
     const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
     
-    window.location.href = discordAuthUrl;
+    window.open(discordAuthUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleInviteBot = () => {
-    const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427';
-    window.open(botInviteUrl, '_blank');
+    const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427&integration_type=1&scope=applications.commands';
+    window.open(botInviteUrl, '_blank', 'noopener,noreferrer');
   };
 
   const scrollToSection = (sectionId: string) => {

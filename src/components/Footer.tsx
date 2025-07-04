@@ -10,12 +10,12 @@ const Footer = () => {
   };
 
   const handleSupportServer = () => {
-    window.open('https://discord.gg/QZqmjsbgUJ', '_blank');
+    window.open('https://discord.gg/QZqmjsbgUJ', '_blank', 'noopener,noreferrer');
   };
 
   const handleInviteBot = () => {
-    const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427';
-    window.open(botInviteUrl, '_blank');
+    const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427&integration_type=1&scope=applications.commands';
+    window.open(botInviteUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

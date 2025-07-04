@@ -28,7 +28,7 @@ const Support = () => {
     console.log('Invite bot button clicked');
     
     try {
-      const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427';
+      const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427&integration_type=1&scope=applications.commands';
       const newWindow = window.open(botInviteUrl, '_blank', 'noopener,noreferrer');
       
       if (!newWindow) {
@@ -37,7 +37,7 @@ const Support = () => {
       }
     } catch (error) {
       console.error('Error opening bot invite:', error);
-      window.location.href = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427';
+      window.location.href = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427&integration_type=1&scope=applications.commands';
     }
   };
 
