@@ -203,33 +203,6 @@ const BotCommands = () => {
       ]
     },
     {
-      icon: Settings,
-      title: "Configuration Commands",
-      color: "bg-purple-500/20 border-purple-500",
-      commands: [
-        {
-          name: "setup",
-          description: "Quick setup wizard for NexuSec configuration",
-          usage: "/setup"
-        },
-        {
-          name: "config",
-          description: "View and modify bot configuration settings",
-          usage: "/config [setting] [value]"
-        },
-        {
-          name: "logs",
-          description: "Configure logging channels and events",
-          usage: "/logs [channel] [events]"
-        },
-        {
-          name: "automod",
-          description: "Configure automatic moderation rules and actions",
-          usage: "/automod [rule] [action] [severity]"
-        }
-      ]
-    },
-    {
       icon: Gamepad2,
       title: "Fun Commands",
       color: "bg-green-500/20 border-green-500",
@@ -373,7 +346,7 @@ const BotCommands = () => {
         <div className="mt-12 text-center">
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg text-white font-semibold">
             <Zap className="h-5 w-5" />
-            80+ Total Commands Available
+            70+ Total Commands Available
           </div>
         </div>
       </div>
