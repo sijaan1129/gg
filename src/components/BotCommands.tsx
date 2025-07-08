@@ -277,42 +277,42 @@ const BotCommands = () => {
         {
           name: "welcome",
           description: "Configure welcome messages and channels (w)",
-          usage: "/welcome [channel] [message]"
+          usage: "/welcome"
         },
         {
           name: "goodbye",
           description: "Set up goodbye messages for leaving members (g)",
-          usage: "/goodbye [channel] [message]"
+          usage: "/goodbye"
         },
         {
           name: "boost",
           description: "Configure server boost celebration messages (b)",
-          usage: "/boost [channel] [message]"
+          usage: "/boost"
         },
         {
           name: "autorole",
           description: "Set automatic roles for new members",
-          usage: "/autorole [role] [bots/humans/all]"
+          usage: "/autorole"
         },
         {
           name: "verification",
           description: "Set up member verification system",
-          usage: "/verification [level] [role] [channel]"
+          usage: "/verification"
         },
         {
           name: "modlog",
           description: "Configure moderation logging channel",
-          usage: "/modlog [channel]"
+          usage: "/modlog"
         },
         {
           name: "prefix",
           description: "Change the bot's command prefix",
-          usage: "/prefix [new_prefix]"
+          usage: "/prefix"
         },
         {
           name: "language",
           description: "Set the bot's language for your server",
-          usage: "/language [language_code]"
+          usage: "/language"
         }
       ]
     }
