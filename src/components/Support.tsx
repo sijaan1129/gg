@@ -2,14 +2,14 @@ import React from 'react';
 import { MessageCircle, Mail, Clock, Users, Shield, Bot, ExternalLink } from 'lucide-react';
 
 const Support = () => {
-  const handleSupportServer = (e: React.MouseEvent) => {
+  const handleSupportServer = () => {
     const supportUrl = 'https://discord.gg/QZqmjsbgUJ';
-    window.open(supportUrl, '_blank');
+    window.open(supportUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const handleInviteBot = (e: React.MouseEvent) => {
+  const handleInviteBot = () => {
     const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1311163553763426427';
-    window.open(botInviteUrl, '_blank');
+    window.open(botInviteUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -66,11 +66,10 @@ const Support = () => {
 
             <button 
               onClick={handleSupportServer}
-              className="w-full bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-2"
+              className="w-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
             >
               <MessageCircle className="h-5 w-5" />
               Join Support Server
-              <ExternalLink className="h-4 w-4" />
             </button>
           </div>
 
