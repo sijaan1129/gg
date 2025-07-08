@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Terminal, Shield, Settings, Users, Ban, Eye, Zap } from 'lucide-react';
+import { Terminal, Shield, Settings, Users, Ban, Eye, Zap, Gamepad2, Wrench } from 'lucide-react';
 
 const CommandCategory = ({ icon: Icon, title, commands, color }: {
   icon: any;
   title: string;
-  commands: Array<{name: string; description: string; usage: string}>;
+  commands: Array<{name: string; description: string; usage: string; type?: string}>;
   color: string;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -41,7 +41,12 @@ const CommandCategory = ({ icon: Icon, title, commands, color }: {
             <div key={index} className="command-item">
               <div className="flex items-start justify-between mb-2">
                 <code className="text-blue-400 font-mono text-lg">/{command.name}</code>
-                <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">SLASH COMMAND</span>
+                <div className="flex gap-2">
+                  <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">SLASH</span>
+                  {command.type === 'both' && (
+                    <span className="text-xs text-gray-500 bg-purple-800 px-2 py-1 rounded">PREFIX</span>
+                  )}
+                </div>
               </div>
               <p className="text-gray-300 mb-2">{command.description}</p>
               <div className="text-sm text-gray-400">
@@ -63,24 +68,34 @@ const BotCommands = () => {
       color: "bg-red-500/20 border-red-500",
       commands: [
         {
-          name: "lockdown",
-          description: "Instantly lock the server to prevent new members from joining during an attack",
-          usage: "/lockdown [duration] [reason]"
-        },
-        {
           name: "antispam",
           description: "Configure anti-spam settings and sensitivity levels",
           usage: "/antispam [enable/disable] [sensitivity]"
         },
         {
-          name: "antiraid",
-          description: "Set up anti-raid protection with custom thresholds",
-          usage: "/antiraid [threshold] [action]"
+          name: "antilink",
+          description: "Block malicious links and unauthorized invites",
+          usage: "/antilink [enable/disable] [whitelist]"
         },
         {
-          name: "whitelist",
-          description: "Add trusted users who bypass all security measures",
-          usage: "/whitelist [add/remove] [@user]"
+          name: "antibotadd",
+          description: "Prevent unauthorized bot additions to your server",
+          usage: "/antibotadd [enable/disable] [action]"
+        },
+        {
+          name: "antirole_create",
+          description: "Block unauthorized role creation attempts",
+          usage: "/antirole_create [enable/disable] [action]"
+        },
+        {
+          name: "antichannel",
+          description: "Prevent unauthorized channel creation and deletion",
+          usage: "/antichannel [enable/disable] [action]"
+        },
+        {
+          name: "badword",
+          description: "Configure bad word filtering and auto-moderation",
+          usage: "/badword [add/remove/list] [word]"
         }
       ]
     },
@@ -92,27 +107,98 @@ const BotCommands = () => {
         {
           name: "ban",
           description: "Ban a user with optional reason and message deletion",
-          usage: "/ban [@user] [reason] [delete_days]"
+          usage: "/ban [@user] [reason] [delete_days]",
+          type: "both"
+        },
+        {
+          name: "softban",
+          description: "Softban a user (ban then immediately unban to delete messages)",
+          usage: "/softban [@user] [reason]",
+          type: "both"
         },
         {
           name: "kick",
           description: "Kick a user from the server with optional reason",
-          usage: "/kick [@user] [reason]"
+          usage: "/kick [@user] [reason]",
+          type: "both"
         },
         {
           name: "mute",
+          description: "Mute a user indefinitely",
+          usage: "/mute [@user] [reason]",
+          type: "both"
+        },
+        {
+          name: "unmute",
+          description: "Remove mute from a user",
+          usage: "/unmute [@user] [reason]",
+          type: "both"
+        },
+        {
+          name: "tempmute",
           description: "Temporarily mute a user for specified duration",
-          usage: "/mute [@user] [duration] [reason]"
+          usage: "/tempmute [@user] [duration] [reason]",
+          type: "both"
+        },
+        {
+          name: "unban",
+          description: "Unban a previously banned user",
+          usage: "/unban [user_id] [reason]",
+          type: "both"
         },
         {
           name: "warn",
           description: "Issue a warning to a user with automatic escalation",
-          usage: "/warn [@user] [reason]"
+          usage: "/warn [@user] [reason]",
+          type: "both"
+        },
+        {
+          name: "clearwarns",
+          description: "Clear all warnings for a specific user",
+          usage: "/clearwarns [@user]",
+          type: "both"
+        },
+        {
+          name: "warns",
+          description: "View warning history for a user",
+          usage: "/warns [@user]",
+          type: "both"
         },
         {
           name: "purge",
           description: "Bulk delete messages with various filters",
-          usage: "/purge [amount] [user] [contains]"
+          usage: "/purge [amount] [user] [contains]",
+          type: "both"
+        },
+        {
+          name: "lock",
+          description: "Lock a channel to prevent new messages",
+          usage: "/lock [channel] [reason]",
+          type: "both"
+        },
+        {
+          name: "unlock",
+          description: "Unlock a previously locked channel",
+          usage: "/unlock [channel] [reason]",
+          type: "both"
+        },
+        {
+          name: "rolelockdown",
+          description: "Prevent role assignments during emergencies",
+          usage: "/rolelockdown [enable/disable]",
+          type: "both"
+        },
+        {
+          name: "slowmode",
+          description: "Set slowmode delay for a channel",
+          usage: "/slowmode [seconds] [channel]",
+          type: "both"
+        },
+        {
+          name: "announce",
+          description: "Send announcements to specified channels",
+          usage: "/announce [channel] [message]",
+          type: "both"
         }
       ]
     },
@@ -144,29 +230,116 @@ const BotCommands = () => {
       ]
     },
     {
-      icon: Eye,
-      title: "Monitoring Commands",
+      icon: Gamepad2,
+      title: "Fun Commands",
       color: "bg-green-500/20 border-green-500",
       commands: [
         {
-          name: "status",
-          description: "View bot status and server protection statistics",
-          usage: "/status"
+          name: "8ball",
+          description: "Ask the magic 8-ball a question",
+          usage: "/8ball [question]",
+          type: "both"
         },
         {
-          name: "threats",
-          description: "View recent threats and security incidents",
-          usage: "/threats [timeframe]"
+          name: "coinflip",
+          description: "Flip a coin and get heads or tails",
+          usage: "/coinflip",
+          type: "both"
+        },
+        {
+          name: "dice",
+          description: "Roll a dice with customizable sides",
+          usage: "/dice [sides]",
+          type: "both"
+        },
+        {
+          name: "joke",
+          description: "Get a random joke to lighten the mood",
+          usage: "/joke",
+          type: "both"
+        },
+        {
+          name: "meme",
+          description: "Get a random meme from popular subreddits",
+          usage: "/meme",
+          type: "both"
+        },
+        {
+          name: "quote",
+          description: "Get an inspirational quote",
+          usage: "/quote",
+          type: "both"
+        },
+        {
+          name: "fact",
+          description: "Learn a random interesting fact",
+          usage: "/fact",
+          type: "both"
+        },
+        {
+          name: "poll",
+          description: "Create a poll with multiple options",
+          usage: "/poll [question] [option1] [option2] ...",
+          type: "both"
+        },
+        {
+          name: "avatar",
+          description: "Display a user's avatar in high quality",
+          usage: "/avatar [@user]",
+          type: "both"
         },
         {
           name: "userinfo",
-          description: "Get detailed information about a user's security profile",
-          usage: "/userinfo [@user]"
+          description: "Get detailed information about a user",
+          usage: "/userinfo [@user]",
+          type: "both"
+        }
+      ]
+    },
+    {
+      icon: Wrench,
+      title: "Setup Commands",
+      color: "bg-yellow-500/20 border-yellow-500",
+      commands: [
+        {
+          name: "welcome",
+          description: "Configure welcome messages and channels (w)",
+          usage: "/welcome [channel] [message] or w!welcome"
         },
         {
-          name: "audit",
-          description: "View audit logs and moderation history",
-          usage: "/audit [user] [action] [timeframe]"
+          name: "goodbye",
+          description: "Set up goodbye messages for leaving members (g)",
+          usage: "/goodbye [channel] [message] or g!goodbye"
+        },
+        {
+          name: "boost",
+          description: "Configure server boost celebration messages (b)",
+          usage: "/boost [channel] [message] or b!boost"
+        },
+        {
+          name: "autorole",
+          description: "Set automatic roles for new members",
+          usage: "/autorole [role] [bots/humans/all]"
+        },
+        {
+          name: "verification",
+          description: "Set up member verification system",
+          usage: "/verification [level] [role] [channel]"
+        },
+        {
+          name: "modlog",
+          description: "Configure moderation logging channel",
+          usage: "/modlog [channel]"
+        },
+        {
+          name: "prefix",
+          description: "Change the bot's command prefix",
+          usage: "/prefix [new_prefix]"
+        },
+        {
+          name: "language",
+          description: "Set the bot's language for your server",
+          usage: "/language [language_code]"
         }
       ]
     }
@@ -178,7 +351,7 @@ const BotCommands = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full text-blue-400 text-sm font-semibold mb-6">
             <Terminal className="h-4 w-4" />
-            Slash Commands
+            Slash & Prefix Commands
           </div>
           <h2 className="text-4xl lg:text-6xl font-black mb-6">
             <span className="text-white">Powerful</span>
@@ -186,8 +359,8 @@ const BotCommands = () => {
             <span className="bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">Command Arsenal</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Complete control over your server security with intuitive slash commands. 
-            No complex setup required - just type and protect.
+            Complete control over your server with both modern slash commands and classic prefix commands. 
+            Advanced security, moderation, and fun features at your fingertips.
           </p>
         </div>
 
@@ -200,7 +373,7 @@ const BotCommands = () => {
         <div className="mt-12 text-center">
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg text-white font-semibold">
             <Zap className="h-5 w-5" />
-            50+ Total Commands Available
+            80+ Total Commands Available
           </div>
         </div>
       </div>
