@@ -70,32 +70,32 @@ const BotCommands = () => {
         {
           name: "antispam",
           description: "Configure anti-spam settings and sensitivity levels",
-          usage: "/antispam [enable/disable] [sensitivity]"
+          usage: "/antispam"
         },
         {
           name: "antilink",
           description: "Block malicious links and unauthorized invites",
-          usage: "/antilink [enable/disable] [whitelist]"
+          usage: "/antilink"
         },
         {
           name: "antibotadd",
           description: "Prevent unauthorized bot additions to your server",
-          usage: "/antibotadd [enable/disable] [action]"
+          usage: "/antibotadd"
         },
         {
           name: "antirole_create",
           description: "Block unauthorized role creation attempts",
-          usage: "/antirole_create [enable/disable] [action]"
+          usage: "/antirole_create"
         },
         {
           name: "antichannel",
           description: "Prevent unauthorized channel creation and deletion",
-          usage: "/antichannel [enable/disable] [action]"
+          usage: "/antichannel"
         },
         {
           name: "badword",
           description: "Configure bad word filtering and auto-moderation",
-          usage: "/badword [add/remove/list] [word]"
+          usage: "/badword"
         }
       ]
     },
@@ -107,97 +107,97 @@ const BotCommands = () => {
         {
           name: "ban",
           description: "Ban a user with optional reason and message deletion",
-          usage: "/ban [@user] [reason] [delete_days]",
+          usage: "/ban",
           type: "both"
         },
         {
           name: "softban",
           description: "Softban a user (ban then immediately unban to delete messages)",
-          usage: "/softban [@user] [reason]",
+          usage: "/softban",
           type: "both"
         },
         {
           name: "kick",
           description: "Kick a user from the server with optional reason",
-          usage: "/kick [@user] [reason]",
+          usage: "/kick",
           type: "both"
         },
         {
           name: "mute",
           description: "Mute a user indefinitely",
-          usage: "/mute [@user] [reason]",
+          usage: "/mute",
           type: "both"
         },
         {
           name: "unmute",
           description: "Remove mute from a user",
-          usage: "/unmute [@user] [reason]",
+          usage: "/unmute",
           type: "both"
         },
         {
           name: "tempmute",
           description: "Temporarily mute a user for specified duration",
-          usage: "/tempmute [@user] [duration] [reason]",
+          usage: "/tempmute",
           type: "both"
         },
         {
           name: "unban",
           description: "Unban a previously banned user",
-          usage: "/unban [user_id] [reason]",
+          usage: "/unban",
           type: "both"
         },
         {
           name: "warn",
           description: "Issue a warning to a user with automatic escalation",
-          usage: "/warn [@user] [reason]",
+          usage: "/warn",
           type: "both"
         },
         {
           name: "clearwarns",
           description: "Clear all warnings for a specific user",
-          usage: "/clearwarns [@user]",
+          usage: "/clearwarns",
           type: "both"
         },
         {
           name: "warns",
           description: "View warning history for a user",
-          usage: "/warns [@user]",
+          usage: "/warns",
           type: "both"
         },
         {
           name: "purge",
           description: "Bulk delete messages with various filters",
-          usage: "/purge [amount] [user] [contains]",
+          usage: "/purge",
           type: "both"
         },
         {
           name: "lock",
           description: "Lock a channel to prevent new messages",
-          usage: "/lock [channel] [reason]",
+          usage: "/lock",
           type: "both"
         },
         {
           name: "unlock",
           description: "Unlock a previously locked channel",
-          usage: "/unlock [channel] [reason]",
+          usage: "/unlock",
           type: "both"
         },
         {
           name: "rolelockdown",
           description: "Prevent role assignments during emergencies",
-          usage: "/rolelockdown [enable/disable]",
+          usage: "/rolelockdown",
           type: "both"
         },
         {
           name: "slowmode",
           description: "Set slowmode delay for a channel",
-          usage: "/slowmode [seconds] [channel]",
+          usage: "/slowmode",
           type: "both"
         },
         {
           name: "announce",
           description: "Send announcements to specified channels",
-          usage: "/announce [channel] [message]",
+          usage: "/announce",
           type: "both"
         }
       ]
@@ -210,7 +210,7 @@ const BotCommands = () => {
         {
           name: "8ball",
           description: "Ask the magic 8-ball a question",
-          usage: "/8ball [question]",
+          usage: "/8ball",
           type: "both"
         },
         {
@@ -222,7 +222,7 @@ const BotCommands = () => {
         {
           name: "dice",
           description: "Roll a dice with customizable sides",
-          usage: "/dice [sides]",
+          usage: "/dice",
           type: "both"
         },
         {
@@ -252,19 +252,19 @@ const BotCommands = () => {
         {
           name: "poll",
           description: "Create a poll with multiple options",
-          usage: "/poll [question] [option1] [option2] ...",
+          usage: "/poll",
           type: "both"
         },
         {
           name: "avatar",
           description: "Display a user's avatar in high quality",
-          usage: "/avatar [@user]",
+          usage: "/avatar",
           type: "both"
         },
         {
           name: "userinfo",
           description: "Get detailed information about a user",
-          usage: "/userinfo [@user]",
+          usage: "/userinfo",
           type: "both"
         }
       ]
