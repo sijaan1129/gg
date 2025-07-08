@@ -277,17 +277,17 @@ const BotCommands = () => {
         {
           name: "welcome",
           description: "Configure welcome messages and channels (w)",
-          usage: "/welcome [channel] [message] or w!welcome"
+          usage: "/welcome [channel] [message]"
         },
         {
           name: "goodbye",
           description: "Set up goodbye messages for leaving members (g)",
-          usage: "/goodbye [channel] [message] or g!goodbye"
+          usage: "/goodbye [channel] [message]"
         },
         {
           name: "boost",
           description: "Configure server boost celebration messages (b)",
-          usage: "/boost [channel] [message] or b!boost"
+          usage: "/boost [channel] [message]"
         },
         {
           name: "autorole",
