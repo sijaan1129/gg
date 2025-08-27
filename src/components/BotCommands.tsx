@@ -69,33 +69,38 @@ const BotCommands = () => {
       commands: [
         {
           name: "antispam",
-          description: "Configure anti-spam settings and sensitivity levels",
+          description: "Configure Anti-Spam System",
           usage: "/antispam"
         },
         {
           name: "antilink",
-          description: "Block malicious links and unauthorized invites",
+          description: "Configure Anti-Link System",
           usage: "/antilink"
         },
         {
           name: "antibotadd",
-          description: "Prevent unauthorized bot additions to your server",
+          description: "Configure Anti-Bot-Add system",
           usage: "/antibotadd"
         },
         {
-          name: "antirole_create",
-          description: "Block unauthorized role creation attempts",
-          usage: "/antirole_create"
+          name: "anti_channel_create",
+          description: "Enable or disable anti-channel creation protection & set punishment",
+          usage: "/anti_channel_create"
         },
         {
-          name: "antichannel",
-          description: "Prevent unauthorized channel creation and deletion",
-          usage: "/antichannel"
+          name: "whitelist add",
+          description: "Add to whitelist",
+          usage: "/whitelist add"
         },
         {
-          name: "badword",
-          description: "Configure bad word filtering and auto-moderation",
-          usage: "/badword"
+          name: "whitelist list",
+          description: "Show whitelisted users/roles",
+          usage: "/whitelist list"
+        },
+        {
+          name: "whitelist remove",
+          description: "Remove from whitelist",
+          usage: "/whitelist remove"
         }
       ]
     },
@@ -108,12 +113,6 @@ const BotCommands = () => {
           name: "ban",
           description: "Ban a user with optional reason and message deletion",
           usage: "/ban",
-          type: "both"
-        },
-        {
-          name: "softban",
-          description: "Softban a user (ban then immediately unban to delete messages)",
-          usage: "/softban",
           type: "both"
         },
         {
@@ -135,18 +134,6 @@ const BotCommands = () => {
           type: "both"
         },
         {
-          name: "tempmute",
-          description: "Temporarily mute a user for specified duration",
-          usage: "/tempmute",
-          type: "both"
-        },
-        {
-          name: "unban",
-          description: "Unban a previously banned user",
-          usage: "/unban",
-          type: "both"
-        },
-        {
           name: "warn",
           description: "Issue a warning to a user with automatic escalation",
           usage: "/warn",
@@ -154,15 +141,8 @@ const BotCommands = () => {
         },
         {
           name: "clearwarns",
-          description: "Clear all warnings for a specific user",
-          usage: "/clearwarns",
-          type: "both"
-        },
-        {
-          name: "warns",
-          description: "View warning history for a user",
-          usage: "/warns",
-          type: "both"
+          description: "Clear warnings for a member",
+          usage: "/clearwarns"
         },
         {
           name: "purge",
@@ -183,22 +163,9 @@ const BotCommands = () => {
           type: "both"
         },
         {
-          name: "rolelockdown",
-          description: "Prevent role assignments during emergencies",
-          usage: "/rolelockdown",
-          type: "both"
-        },
-        {
-          name: "slowmode",
-          description: "Set slowmode delay for a channel",
-          usage: "/slowmode",
-          type: "both"
-        },
-        {
           name: "announce",
-          description: "Send announcements to specified channels",
-          usage: "/announce",
-          type: "both"
+          description: "Create and send an announcement to a channel",
+          usage: "/announce"
         }
       ]
     },
@@ -208,64 +175,39 @@ const BotCommands = () => {
       color: "bg-green-500/20 border-green-500",
       commands: [
         {
-          name: "8ball",
-          description: "Ask the magic 8-ball a question",
-          usage: "/8ball",
-          type: "both"
+          name: "ping",
+          description: "Check the bot's latency",
+          usage: "/ping"
         },
         {
-          name: "coinflip",
-          description: "Flip a coin and get heads or tails",
-          usage: "/coinflip",
-          type: "both"
-        },
-        {
-          name: "dice",
-          description: "Roll a dice with customizable sides",
-          usage: "/dice",
-          type: "both"
-        },
-        {
-          name: "joke",
-          description: "Get a random joke to lighten the mood",
-          usage: "/joke",
-          type: "both"
-        },
-        {
-          name: "meme",
-          description: "Get a random meme from popular subreddits",
-          usage: "/meme",
-          type: "both"
-        },
-        {
-          name: "quote",
-          description: "Get an inspirational quote",
-          usage: "/quote",
-          type: "both"
-        },
-        {
-          name: "fact",
-          description: "Learn a random interesting fact",
-          usage: "/fact",
-          type: "both"
-        },
-        {
-          name: "poll",
-          description: "Create a poll with multiple options",
-          usage: "/poll",
-          type: "both"
+          name: "help",
+          description: "Shows all commands and features",
+          usage: "/help"
         },
         {
           name: "avatar",
-          description: "Display a user's avatar in high quality",
-          usage: "/avatar",
-          type: "both"
+          description: "View a user's avatar and banner",
+          usage: "/avatar"
         },
         {
-          name: "userinfo",
-          description: "Get detailed information about a user",
-          usage: "/userinfo",
-          type: "both"
+          name: "serverinfo",
+          description: "Get information about this server",
+          usage: "/serverinfo"
+        },
+        {
+          name: "emojiadd",
+          description: "Add a custom emoji to the server",
+          usage: "/emojiadd"
+        },
+        {
+          name: "emojisearch",
+          description: "Search for emojis by name across servers",
+          usage: "/emojisearch"
+        },
+        {
+          name: "afk",
+          description: "Set your AFK status",
+          usage: "/afk"
         }
       ]
     },
@@ -275,44 +217,64 @@ const BotCommands = () => {
       color: "bg-yellow-500/20 border-yellow-500",
       commands: [
         {
-          name: "welcome",
-          description: "Configure welcome messages and channels (w)",
-          usage: "/welcome"
+          name: "welcome enable",
+          description: "Enable welcome messages",
+          usage: "/welcome enable"
         },
         {
-          name: "goodbye",
-          description: "Set up goodbye messages for leaving members (g)",
-          usage: "/goodbye"
+          name: "welcome disable",
+          description: "Disable welcome messages",
+          usage: "/welcome disable"
         },
         {
-          name: "boost",
-          description: "Configure server boost celebration messages (b)",
-          usage: "/boost"
+          name: "welcome help",
+          description: "Show welcome message variables and setup guide",
+          usage: "/welcome help"
+        },
+        {
+          name: "welcome test",
+          description: "Test the welcome message",
+          usage: "/welcome test"
         },
         {
           name: "autorole",
-          description: "Set automatic roles for new members",
+          description: "Set or disable auto-role for new members",
           usage: "/autorole"
         },
         {
-          name: "verification",
-          description: "Set up member verification system",
-          usage: "/verification"
-        },
-        {
-          name: "modlog",
-          description: "Configure moderation logging channel",
-          usage: "/modlog"
+          name: "autovcsetup",
+          description: "Setup auto VC system",
+          usage: "/autovcsetup"
         },
         {
           name: "prefix",
-          description: "Change the bot's command prefix",
+          description: "Show the server's current prefix",
           usage: "/prefix"
         },
         {
-          name: "language",
-          description: "Set the bot's language for your server",
-          usage: "/language"
+          name: "setprefix",
+          description: "Set a new server prefix",
+          usage: "/setprefix"
+        },
+        {
+          name: "serverstats",
+          description: "Setup or remove server stat channels",
+          usage: "/serverstats"
+        },
+        {
+          name: "leaderboard",
+          description: "Show the server leaderboard",
+          usage: "/leaderboard"
+        },
+        {
+          name: "role add",
+          description: "Add a role to a user",
+          usage: "/role add"
+        },
+        {
+          name: "role remove",
+          description: "Remove a role from a user",
+          usage: "/role remove"
         }
       ]
     }
@@ -346,7 +308,7 @@ const BotCommands = () => {
         <div className="mt-12 text-center">
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg text-white font-semibold">
             <Zap className="h-5 w-5" />
-            70+ Total Commands Available
+            50+ Total Commands Available
           </div>
         </div>
       </div>
