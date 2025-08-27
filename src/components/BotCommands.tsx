@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Terminal, Shield, Settings, Users, Ban, Eye, Zap, Gamepad2, Wrench } from 'lucide-react';
+import { Terminal, Shield, Settings, Users, Ban, Eye, Zap, Gamepad2, Wrench, Music, MessageSquare, Hash, Crown } from 'lucide-react';
 
 const CommandCategory = ({ icon: Icon, title, commands, color }: {
   icon: any;
   title: string;
-  commands: Array<{name: string; description: string; usage: string; type?: string}>;
+  commands: Array<{name: string; description: string}>;
   color: string;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -41,17 +41,9 @@ const CommandCategory = ({ icon: Icon, title, commands, color }: {
             <div key={index} className="command-item">
               <div className="flex items-start justify-between mb-2">
                 <code className="text-blue-400 font-mono text-lg">/{command.name}</code>
-                <div className="flex gap-2">
-                  <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">SLASH</span>
-                  {command.type === 'both' && (
-                    <span className="text-xs text-gray-500 bg-purple-800 px-2 py-1 rounded">PREFIX</span>
-                  )}
-                </div>
+                <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">SLASH</span>
               </div>
-              <p className="text-gray-300 mb-2">{command.description}</p>
-              <div className="text-sm text-gray-400">
-                <span className="font-semibold">Usage:</span> <code className="text-gray-300">{command.usage}</code>
-              </div>
+              <p className="text-gray-300">{command.description}</p>
             </div>
           ))}
         </div>
@@ -64,221 +56,159 @@ const BotCommands = () => {
   const commandCategories = [
     {
       icon: Shield,
-      title: "Security Commands",
+      title: "Anti-Raid & Security",
       color: "bg-red-500/20 border-red-500",
       commands: [
-        {
-          name: "antispam",
-          description: "Configure Anti-Spam System",
-          usage: "/antispam"
-        },
-        {
-          name: "antilink",
-          description: "Configure Anti-Link System",
-          usage: "/antilink"
-        },
-        {
-          name: "antibotadd",
-          description: "Configure Anti-Bot-Add system",
-          usage: "/antibotadd"
-        },
-        {
-          name: "anti_channel_create",
-          description: "Enable or disable anti-channel creation protection & set punishment",
-          usage: "/anti_channel_create"
-        },
-        {
-          name: "whitelist add",
-          description: "Add to whitelist",
-          usage: "/whitelist add"
-        },
-        {
-          name: "whitelist list",
-          description: "Show whitelisted users/roles",
-          usage: "/whitelist list"
-        },
-        {
-          name: "whitelist remove",
-          description: "Remove from whitelist",
-          usage: "/whitelist remove"
-        }
+        { name: "antispam", description: "Configure intelligent spam detection and prevention" },
+        { name: "antilink", description: "Block malicious links and unwanted invites" },
+        { name: "antibotadd", description: "Prevent unauthorized bot additions to your server" },
+        { name: "anti_channel_create", description: "Stop mass channel creation attacks" },
+        { name: "anti_role_create", description: "Prevent unauthorized role creation" },
+        { name: "whitelist add", description: "Add trusted users to bypass security measures" },
+        { name: "whitelist list", description: "View all whitelisted members and roles" },
+        { name: "whitelist remove", description: "Remove users from the whitelist" }
       ]
     },
     {
       icon: Ban,
-      title: "Moderation Commands",
+      title: "Moderation & Punishment",
       color: "bg-blue-500/20 border-blue-500",
       commands: [
-        {
-          name: "ban",
-          description: "Ban a user with optional reason and message deletion",
-          usage: "/ban",
-          type: "both"
-        },
-        {
-          name: "kick",
-          description: "Kick a user from the server with optional reason",
-          usage: "/kick",
-          type: "both"
-        },
-        {
-          name: "mute",
-          description: "Mute a user indefinitely",
-          usage: "/mute",
-          type: "both"
-        },
-        {
-          name: "unmute",
-          description: "Remove mute from a user",
-          usage: "/unmute",
-          type: "both"
-        },
-        {
-          name: "warn",
-          description: "Issue a warning to a user with automatic escalation",
-          usage: "/warn",
-          type: "both"
-        },
-        {
-          name: "clearwarns",
-          description: "Clear warnings for a member",
-          usage: "/clearwarns"
-        },
-        {
-          name: "purge",
-          description: "Bulk delete messages with various filters",
-          usage: "/purge",
-          type: "both"
-        },
-        {
-          name: "lock",
-          description: "Lock a channel to prevent new messages",
-          usage: "/lock",
-          type: "both"
-        },
-        {
-          name: "unlock",
-          description: "Unlock a previously locked channel",
-          usage: "/unlock",
-          type: "both"
-        },
-        {
-          name: "announce",
-          description: "Create and send an announcement to a channel",
-          usage: "/announce"
-        }
+        { name: "ban", description: "Permanently ban troublemakers from your server" },
+        { name: "kick", description: "Remove disruptive members temporarily" },
+        { name: "mute", description: "Silence users who break chat rules" },
+        { name: "unmute", description: "Restore speaking privileges to muted users" },
+        { name: "warn", description: "Issue formal warnings with automatic escalation" },
+        { name: "clearwarns", description: "Clear warning history for reformed members" },
+        { name: "purge", description: "Bulk delete messages with smart filtering" },
+        { name: "lock", description: "Temporarily lock channels during incidents" },
+        { name: "unlock", description: "Restore normal channel permissions" },
+        { name: "timeout", description: "Put users in timeout for rule violations" }
+      ]
+    },
+    {
+      icon: MessageSquare,
+      title: "Content Filtering",
+      color: "bg-purple-500/20 border-purple-500",
+      commands: [
+        { name: "badword add", description: "Add words to the automatic filter blacklist" },
+        { name: "badword remove", description: "Remove words from the filter system" },
+        { name: "badword list", description: "View all currently blocked words" },
+        { name: "badword enable", description: "Activate bad word filtering with custom actions" },
+        { name: "badword disable", description: "Turn off automatic word filtering" },
+        { name: "badword bypass_role", description: "Set roles that can bypass word filters" }
       ]
     },
     {
       icon: Gamepad2,
-      title: "Fun Commands",
+      title: "Fun & Entertainment",
       color: "bg-green-500/20 border-green-500",
       commands: [
-        {
-          name: "ping",
-          description: "Check the bot's latency",
-          usage: "/ping"
-        },
-        {
-          name: "help",
-          description: "Shows all commands and features",
-          usage: "/help"
-        },
-        {
-          name: "avatar",
-          description: "View a user's avatar and banner",
-          usage: "/avatar"
-        },
-        {
-          name: "serverinfo",
-          description: "Get information about this server",
-          usage: "/serverinfo"
-        },
-        {
-          name: "emojiadd",
-          description: "Add a custom emoji to the server",
-          usage: "/emojiadd"
-        },
-        {
-          name: "emojisearch",
-          description: "Search for emojis by name across servers",
-          usage: "/emojisearch"
-        },
-        {
-          name: "afk",
-          description: "Set your AFK status",
-          usage: "/afk"
-        }
+        { name: "8ball", description: "Ask the magic 8-ball for mystical answers" },
+        { name: "meme", description: "Get fresh memes from popular subreddits" },
+        { name: "joke", description: "Brighten the mood with random jokes" },
+        { name: "roast", description: "Get playfully roasted by the bot" },
+        { name: "compliment", description: "Receive a nice compliment to boost your day" },
+        { name: "dice", description: "Roll dice for games and random decisions" },
+        { name: "coinflip", description: "Flip a coin for quick yes/no decisions" },
+        { name: "rps", description: "Play rock paper scissors against the bot" },
+        { name: "trivia", description: "Test your knowledge with random trivia questions" },
+        { name: "quote", description: "Get inspiring quotes from famous people" }
       ]
     },
     {
-      icon: Wrench,
-      title: "Setup Commands",
+      icon: Music,
+      title: "Music & Media",
+      color: "bg-pink-500/20 border-pink-500",
+      commands: [
+        { name: "play", description: "Play high-quality music from YouTube and Spotify" },
+        { name: "pause", description: "Pause the currently playing track" },
+        { name: "resume", description: "Resume playback of paused music" },
+        { name: "skip", description: "Skip to the next song in the queue" },
+        { name: "queue", description: "View the current music queue" },
+        { name: "volume", description: "Adjust the music playback volume" },
+        { name: "nowplaying", description: "See what's currently playing" },
+        { name: "lyrics", description: "Display lyrics for the current song" }
+      ]
+    },
+    {
+      icon: Users,
+      title: "Server Information",
+      color: "bg-cyan-500/20 border-cyan-500",
+      commands: [
+        { name: "serverinfo", description: "Get detailed information about your server" },
+        { name: "userinfo", description: "View detailed profile information for any member" },
+        { name: "avatar", description: "Display user avatars and banners in high quality" },
+        { name: "membercount", description: "Show current server member statistics" },
+        { name: "roleinfo", description: "Get information about server roles" },
+        { name: "channelinfo", description: "View details about specific channels" },
+        { name: "boostinfo", description: "Check server boost status and perks" }
+      ]
+    },
+    {
+      icon: Crown,
+      title: "Server Management",
       color: "bg-yellow-500/20 border-yellow-500",
       commands: [
-        {
-          name: "welcome enable",
-          description: "Enable welcome messages",
-          usage: "/welcome enable"
-        },
-        {
-          name: "welcome disable",
-          description: "Disable welcome messages",
-          usage: "/welcome disable"
-        },
-        {
-          name: "welcome help",
-          description: "Show welcome message variables and setup guide",
-          usage: "/welcome help"
-        },
-        {
-          name: "welcome test",
-          description: "Test the welcome message",
-          usage: "/welcome test"
-        },
-        {
-          name: "autorole",
-          description: "Set or disable auto-role for new members",
-          usage: "/autorole"
-        },
-        {
-          name: "autovcsetup",
-          description: "Setup auto VC system",
-          usage: "/autovcsetup"
-        },
-        {
-          name: "prefix",
-          description: "Show the server's current prefix",
-          usage: "/prefix"
-        },
-        {
-          name: "setprefix",
-          description: "Set a new server prefix",
-          usage: "/setprefix"
-        },
-        {
-          name: "serverstats",
-          description: "Setup or remove server stat channels",
-          usage: "/serverstats"
-        },
-        {
-          name: "leaderboard",
-          description: "Show the server leaderboard",
-          usage: "/leaderboard"
-        },
-        {
-          name: "role add",
-          description: "Add a role to a user",
-          usage: "/role add"
-        },
-        {
-          name: "role remove",
-          description: "Remove a role from a user",
-          usage: "/role remove"
-        }
+        { name: "role add", description: "Assign roles to members efficiently" },
+        { name: "role remove", description: "Remove roles from users" },
+        { name: "role create", description: "Create new roles with custom permissions" },
+        { name: "emojiadd", description: "Add custom emojis to enhance your server" },
+        { name: "emojisearch", description: "Find emojis across all your servers" },
+        { name: "announce", description: "Create professional announcements" },
+        { name: "poll", description: "Create interactive polls for community decisions" },
+        { name: "giveaway", description: "Host exciting giveaways for your members" }
+      ]
+    },
+    {
+      icon: Settings,
+      title: "Welcome & Automation",
+      color: "bg-indigo-500/20 border-indigo-500",
+      commands: [
+        { name: "welcome enable", description: "Set up custom welcome messages for new members" },
+        { name: "welcome disable", description: "Turn off welcome message system" },
+        { name: "welcome test", description: "Preview how your welcome message looks" },
+        { name: "welcome help", description: "Learn about welcome message variables" },
+        { name: "autorole", description: "Automatically assign roles to new joiners" },
+        { name: "autovcsetup", description: "Create dynamic voice channels that auto-delete" },
+        { name: "boost enable", description: "Set up server boost celebration messages" },
+        { name: "boost disable", description: "Turn off boost notifications" },
+        { name: "boost test", description: "Test your boost message setup" }
+      ]
+    },
+    {
+      icon: Hash,
+      title: "Utility & Tools",
+      color: "bg-orange-500/20 border-orange-500",
+      commands: [
+        { name: "ping", description: "Check bot latency and response time" },
+        { name: "help", description: "Get comprehensive help and command information" },
+        { name: "prefix", description: "View the current server command prefix" },
+        { name: "setprefix", description: "Change the server's command prefix" },
+        { name: "afk", description: "Set your away-from-keyboard status" },
+        { name: "remind", description: "Set personal reminders for important tasks" },
+        { name: "weather", description: "Get current weather information for any city" },
+        { name: "translate", description: "Translate text between different languages" },
+        { name: "define", description: "Get dictionary definitions for words" },
+        { name: "calculate", description: "Perform mathematical calculations" }
+      ]
+    },
+    {
+      icon: Eye,
+      title: "Server Statistics",
+      color: "bg-teal-500/20 border-teal-500",
+      commands: [
+        { name: "serverstats", description: "Set up live server statistic channels" },
+        { name: "leaderboard", description: "View the most active server members" },
+        { name: "activity", description: "Check server activity and engagement metrics" },
+        { name: "growth", description: "View server growth statistics over time" },
+        { name: "topmembers", description: "See the most valuable community members" },
+        { name: "channels", description: "Get overview of all server channels" }
       ]
     }
   ];
+
+  const totalCommands = commandCategories.reduce((total, category) => total + category.commands.length, 0);
 
   return (
     <section id="commands" className="py-20 px-4 sm:px-6 lg:px-8 relative">
@@ -286,30 +216,33 @@ const BotCommands = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full text-blue-400 text-sm font-semibold mb-6">
             <Terminal className="h-4 w-4" />
-            Slash & Prefix Commands
+            Complete Command Suite
           </div>
           <h2 className="text-4xl lg:text-6xl font-black mb-6">
-            <span className="text-white">Powerful</span>
+            <span className="text-white">Everything You Need</span>
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">Command Arsenal</span>
+            <span className="bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">In One Bot</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Complete control over your server with both modern slash commands and classic prefix commands. 
-            Advanced security, moderation, and fun features at your fingertips.
+            From advanced security to fun entertainment, NexuSec provides all the tools 
+            you need to build and manage a thriving Discord community.
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {commandCategories.map((category, index) => (
             <CommandCategory key={index} {...category} />
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg text-white font-semibold">
-            <Zap className="h-5 w-5" />
-            50+ Total Commands Available
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-red-600 rounded-xl text-white font-bold text-lg">
+            <Zap className="h-6 w-6" />
+            {totalCommands}+ Total Commands Available
           </div>
+          <p className="text-gray-400 mt-4">
+            All commands support both slash (/) and prefix modes for maximum flexibility
+          </p>
         </div>
       </div>
     </section>
