@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Bot, Shield, Zap, Users, Star, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
@@ -7,12 +8,7 @@ const Hero = () => {
     window.open(botInviteUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const scrollToCommands = () => {
-    const element = document.getElementById('commands');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+import { Link } from 'react-router-dom';
 
   return (
     <section id="dashboard" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -72,9 +68,9 @@ const Hero = () => {
                 Add to Discord
                 <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button onClick={scrollToCommands} className="cta-secondary">
+              <Link to="/commands" className="cta-secondary">
                 View Commands
-              </button>
+              </Link>
             </div>
 
             {/* Rating */}

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Shield, Menu, X, LogIn, Bot } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const handleDiscordLogin = () => {
     // For a proper Discord OAuth login, you need to:
@@ -29,20 +31,14 @@ const Header = () => {
     window.open(botInviteUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
-  };
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/80 border-b border-red-500/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <div className="relative">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-red-500 rounded-xl flex items-center justify-center rotate-12 hover:rotate-0 transition-transform duration-300">
                 <Shield className="h-7 w-7 text-white" />
@@ -53,15 +49,15 @@ const Header = () => {
               <span className="text-2xl font-black bg-gradient-to-r from-white to-blue-400 bg-clip-text text-transparent">NexuSec</span>
               <div className="text-xs text-red-400 font-semibold">SECURITY BOT</div>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection('dashboard')} className="nav-link">Dashboard</button>
-            <button onClick={() => scrollToSection('commands')} className="nav-link">Commands</button>
-            <button onClick={() => scrollToSection('protection')} className="nav-link">Protection</button>
-            <button onClick={() => scrollToSection('reviews')} className="nav-link">Reviews</button>
-            <button onClick={() => scrollToSection('support')} className="nav-link">Support</button>
+            <Link to="/dashboard" className={`nav-link ${isActive('/dashboard') ? 'text-blue-400' : ''}`}>Dashboard</Link>
+            <Link to="/commands" className={`nav-link ${isActive('/commands') ? 'text-blue-400' : ''}`}>Commands</Link>
+            <Link to="/protection" className={`nav-link ${isActive('/protection') ? 'text-blue-400' : ''}`}>Protection</Link>
+            <Link to="/reviews" className={`nav-link ${isActive('/reviews') ? 'text-blue-400' : ''}`}>Reviews</Link>
+            <Link to="/support" className={`nav-link ${isActive('/support') ? 'text-blue-400' : ''}`}>Support</Link>
           </nav>
 
           {/* Desktop Buttons */}
@@ -96,11 +92,11 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-6 border-t border-red-500/20">
             <nav className="flex flex-col space-y-4">
-              <button onClick={() => scrollToSection('dashboard')} className="nav-link text-left">Dashboard</button>
-              <button onClick={() => scrollToSection('commands')} className="nav-link text-left">Commands</button>
-              <button onClick={() => scrollToSection('protection')} className="nav-link text-left">Protection</button>
-              <button onClick={() => scrollToSection('reviews')} className="nav-link text-left">Reviews</button>
-              <button onClick={() => scrollToSection('support')} className="nav-link text-left">Support</button>
+              <Link to="/dashboard" className={`nav-link text-left ${isActive('/dashboard') ? 'text-blue-400' : ''}`} onClick={() => setIsMenuOpen(false)}>Dashboard</Link>
+              <Link to="/commands" className={`nav-link text-left ${isActive('/commands') ? 'text-blue-400' : ''}`} onClick={() => setIsMenuOpen(false)}>Commands</Link>
+              <Link to="/protection" className={`nav-link text-left ${isActive('/protection') ? 'text-blue-400' : ''}`} onClick={() => setIsMenuOpen(false)}>Protection</Link>
+              <Link to="/reviews" className={`nav-link text-left ${isActive('/reviews') ? 'text-blue-400' : ''}`} onClick={() => setIsMenuOpen(false)}>Reviews</Link>
+              <Link to="/support" className={`nav-link text-left ${isActive('/support') ? 'text-blue-400' : ''}`} onClick={() => setIsMenuOpen(false)}>Support</Link>
               <div className="flex flex-col space-y-3 pt-4">
                 <button 
                   onClick={handleDiscordLogin}

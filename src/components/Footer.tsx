@@ -1,14 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Shield, Github, Twitter, MessageCircle, Mail, Bot } from 'lucide-react';
 
 const Footer = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleSupportServer = () => {
     window.open('https://discord.gg/QZqmjsbgUJ', '_blank', 'noopener,noreferrer');
   };
@@ -54,10 +48,10 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-bold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              <li><button onClick={() => scrollToSection('dashboard')} className="footer-link">Dashboard</button></li>
-              <li><button onClick={() => scrollToSection('commands')} className="footer-link">Commands</button></li>
-              <li><button onClick={() => scrollToSection('protection')} className="footer-link">Protection</button></li>
-              <li><button onClick={() => scrollToSection('support')} className="footer-link">Support</button></li>
+              <li><Link to="/dashboard" className="footer-link">Dashboard</Link></li>
+              <li><Link to="/commands" className="footer-link">Commands</Link></li>
+              <li><Link to="/protection" className="footer-link">Protection</Link></li>
+              <li><Link to="/support" className="footer-link">Support</Link></li>
             </ul>
           </div>
 
@@ -105,8 +99,8 @@ const Footer = () => {
               © 2025 NexuSec Development. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               <a href="#" className="hover:text-white transition-colors">Status</a>
             </div>
           </div>
