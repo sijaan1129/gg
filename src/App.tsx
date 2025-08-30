@@ -10,7 +10,6 @@ import ReviewsPage from './pages/ReviewsPage';
 import SupportPage from './pages/SupportPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
-import AuthCallback from './components/AuthCallback';
 
 function App() {
   return (
@@ -54,7 +53,6 @@ function App() {
               <Route path="/support" element={<SupportPage />} />
               <Route path="/privacy" element={<PrivacyPolicyPage />} />
               <Route path="/terms" element={<TermsOfServicePage />} />
-              <Route path="/auth/callback" element={<AuthCallback />} />
             </Routes>
           </main>
           <Footer />

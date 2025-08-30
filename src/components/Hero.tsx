@@ -8,8 +8,6 @@ const Hero = () => {
     window.open(botInviteUrl, '_blank', 'noopener,noreferrer');
   };
 
-import { Link } from 'react-router-dom';
-
   return (
     <section id="dashboard" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated Background Elements */}
